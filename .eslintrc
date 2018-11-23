@@ -1,3 +1,6 @@
 {
-  "extends": "@sealsystems/eslint-config-es"
+  "extends": "@sealsystems/eslint-config-es",
+  "env": {
+    "jest": true
+  }
 }

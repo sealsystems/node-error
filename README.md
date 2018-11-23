@@ -22,45 +22,62 @@ const SealError = require('@sealsystems/error');
 Then you can create an error object.
 
 ```javascript
-const err = new SealError('Universal error.', 42, { username: 'hugo' });
+const err = new SealError('ERR_TEST_ERROR', 503, { username: 'hugo' });
 ```
 
-This creates an new object of type `Error` with some additional properties:
+This creates an new Error of type `SealError` with some additional properties:
 
 ```javascript
 {
   name: 'SealError',
-  code: 42,
-  message: 'Universal error',
+  id: 'ERR_TEST_ERROR',
+  message: 'Message string for the test error',
+  httpErrorCode: 503,
   metadata: {
     username: 'hugo'
   }
-  ...
 }
 ```
 
 ## API
 
-### Creating an error object
+### Creating an Error object
 
-The constructor function creates a new object of type `Error`. It expects the file `errors.js` to exist in callers module `lib` subdirectory if the calling script resides in `bin`, `lib` or `test` subdirectories. The map defined by `errors.js` is used to set the `metadata.kbcode` entry automatically.
+The constructor function creates a new object of type `SealError`.
 
 ```javascript
-const err = new SealError(message, code, metadata);
+const err = new SealError(errorId/message, code, metadata);
+```
+
+You can also use `SealError` like a generic error type. If no matching error ID for the module is found in the error list, it will treat the error ID as error message instead:
+
+```javascript
+const err = new SealError('Something went wrong.', 503, { status: 'oh no!' });
 ```
 
 Parameter:
 ```
-message    string   mandatory   error message
-code       number   optional    error code
-metadata   object   optional    error metadata
+errorId/message  string   mandatory   error key from `error.js` or custom message
+httpErrorCode    number   optional    HTTP error code (default: 500)
+metadata         object   optional    error metadata
 ```
 
-Result: new error object
+Result: new `SealError` object
+
+It expects the file `errors.js` to exist in callers module `lib` subdirectory if the calling script resides in `bin`, `lib` or `test` subdirectories. The map defined by `errors.js` is used to set additional metadata automatically.
+
+You can also pass a custom list of errors for your model, if you add the following line before invoking a `new SealError()`for the first time:
+
+```javascript
+SealError.addModuleErrors(require('../package.json'), require('./my-error-list.js'));
+```
+
+Internally, `SealError` uses both the module name and version to distinguish the list of error messages for a module, so using different module versions in your dependencies don't overwrite each other.
+
 
 ### Chaining error history
 
-For creating a history of errors while throwing upward in callstack every error object has the `chain` method.
+For creating a history of errors while throwing upward in callstack, every `SealError` object has the `chain` method. It can chain other `SealError`s as well as generic JavaScript error instances (`Error`, `TypeError`, etc.)
 
 ```javascript
 myError.chain(previousError);
@@ -71,36 +88,51 @@ Parameter:
 previousError   object   mandatory    error object returned by a previously called function
 ```
 
-Result: the callers error object, to make calls to `chain` chainable. Each `chain` stores the data of the given error object into `metadata.cause`.
+Result: The caller's error object, to make calls to `chain` chainable. Each `chain` stores the data of the given error object into `metadata.cause`.
 
-### Join metadata
-
-Join metadata and error object metadata into a new metadata object for extended logging.
-
-**Attention**: This function does not alter the errors metadata, it just returns a new metadata object.
-
-```javascript
-const joinedMeta = error.joinMeta(metadata);
-```
-
-Parameter:
-```
-metadata   object   mandatory   additional metadata to join
-```
-
-Result: new metadata object
 
 ### Get plain data object
 
-Plain data objects without functions are useful e.g. for logging or returning errors in an http body.
-This module provides two ways to get a plain data object.
+Plain data objects without functions are useful e.g. for logging or returning errors in an http body. This module provides two ways to get a plain data object:
 
-#### plain
+#### toJSON
 
-The static function `plain` takes an arbitrary object of type `Error` and returns a new plain data object.
+The member function `toJSON` returns a plain data object of the calling `@sealsystems/error` object. It will serialize all enumerable properties including chained errors.
 
 ```javascript
-const plainNewObject = SealError.plain(error);
+const myError = new SealError(…);
+const myChildError = new SealError(…);
+myError.chain(myChildError);
+myError.toJSON();
+```
+
+Result: new plain javascript object of this structure:
+
+```javascript
+{
+  name: 'SealError,
+  id: myError.id,
+  message: myError.message,
+  httpStatusCode: myError.httpStatusCode,
+  metadata: {
+    cause: {
+      name: 'SealError,
+      id: myChildError.id,
+      message: myChildError.message,
+      httpStatusCode: myChildError.httpStatusCode,
+      …
+    }
+    …
+  }
+}
+```
+
+#### toJSON (static)
+
+The static function `toJSON` takes an arbitrary object of type `Error` and returns a new plain data object. It will serialize all enumerable properties.
+
+```javascript
+const plainNewObject = SealError.toJSON(error);
 ```
 
 Parameter:
@@ -112,28 +144,13 @@ Result: new plain javascript object of this structure:
 
 ```javascript
 {
-  code: error.code,
+  name: error.name,
   message: error.message,
-  metadata: error.metadata
+  …
 }
 ```
 
-#### normalize
+### Get string representation
 
-The member function `normalize` returns a plain data object of the calling `@sealsystems/error` object.
-
-```javascript
-const plainNewObject = error.normalize();
-```
-
-Result: new plain javascript object as descriped above.
-
-### Get JSON string
-
-The member function `stringify` returns a stringified JSON representation of the errors plain data.
-
-```javascript
-const stringifiedData = error.stringify();
-```
-
-Result: JSON string of plain data object created by `plain`.
+`SealError` extends the standard `toString` method of the `Error` class to include the error ID, if it can be found in the list of module errors.
+This can be useful for log messages, however the HTTP status code and metadata (including chained errors) are not included.
