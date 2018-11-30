@@ -30,10 +30,11 @@ This creates an new Error of type `SealError` with some additional properties:
 ```javascript
 {
   name: 'SealError',
-  id: 'ERR_TEST_ERROR',
+  code: 'ERR_TEST_ERROR',
   message: 'Message string for the test error',
   httpErrorCode: 503,
   metadata: {
+    kbCode: '<module name>/TEST_ERROR',
     username: 'hugo'
   }
 }
@@ -46,10 +47,10 @@ This creates an new Error of type `SealError` with some additional properties:
 The constructor function creates a new object of type `SealError`.
 
 ```javascript
-const err = new SealError(errorId/message, code, metadata);
+const err = new SealError(errorCode/message, code, metadata);
 ```
 
-You can also use `SealError` like a generic error type. If no matching error ID for the module is found in the error list, it will treat the error ID as error message instead:
+You can also use `SealError` like a generic error type. If no matching error Code for the module is found in the error list, it will treat the error Code as error message instead:
 
 ```javascript
 const err = new SealError('Something went wrong.', 503, { status: 'oh no!' });
@@ -57,9 +58,9 @@ const err = new SealError('Something went wrong.', 503, { status: 'oh no!' });
 
 Parameter:
 ```
-errorId/message  string   mandatory   error key from `error.js` or custom message
-httpErrorCode    number   optional    HTTP error code (default: 500)
-metadata         object   optional    error metadata
+errorCode/message  string   mandatory   error key from `error.js` or custom message
+httpErrorCode      number   optional    HTTP error code (default: 500)
+metadata           object   optional    error metadata
 ```
 
 Result: new `SealError` object
@@ -73,7 +74,6 @@ SealError.addModuleErrors(require('../package.json'), require('./my-error-list.j
 ```
 
 Internally, `SealError` uses both the module name and version to distinguish the list of error messages for a module, so using different module versions in your dependencies don't overwrite each other.
-
 
 ### Chaining error history
 
@@ -110,14 +110,15 @@ Result: new plain javascript object of this structure:
 
 ```javascript
 {
-  name: 'SealError,
-  id: myError.id,
+  name: 'SealError',
+  code: myError.code,
   message: myError.message,
   httpStatusCode: myError.httpStatusCode,
   metadata: {
+    kbCode: '<module name>/myError.code'
     cause: {
-      name: 'SealError,
-      id: myChildError.id,
+      name: 'SealError',
+      code: myChildError.code,
       message: myChildError.message,
       httpStatusCode: myChildError.httpStatusCode,
       …
@@ -152,5 +153,5 @@ Result: new plain javascript object of this structure:
 
 ### Get string representation
 
-`SealError` extends the standard `toString` method of the `Error` class to include the error ID, if it can be found in the list of module errors.
+`SealError` extends the standard `toString` method of the `Error` class to include the error Code, if it can be found in the list of module errors.
 This can be useful for log messages, however the HTTP status code and metadata (including chained errors) are not included.
