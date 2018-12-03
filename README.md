@@ -155,3 +155,4 @@ Result: new plain javascript object of this structure:
 
 `SealError` extends the standard `toString` method of the `Error` class to include the error code, if it can be found in the list of module errors.
 This can be useful for log messages, however the HTTP status code and metadata (including chained errors) are not included.
+
