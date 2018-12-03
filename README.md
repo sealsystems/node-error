@@ -50,7 +50,7 @@ The constructor function creates a new object of type `SealError`.
 const err = new SealError(errorCode/message, code, metadata);
 ```
 
-You can also use `SealError` like a generic error type. If no matching error Code for the module is found in the error list, it will treat the error Code as error message instead:
+You can also use `SealError` like a generic error type. If no matching error code for the module is found in the error list, it will treat the error code as error message instead:
 
 ```javascript
 const err = new SealError('Something went wrong.', 503, { status: 'oh no!' });
@@ -153,5 +153,5 @@ Result: new plain javascript object of this structure:
 
 ### Get string representation
 
-`SealError` extends the standard `toString` method of the `Error` class to include the error Code, if it can be found in the list of module errors.
+`SealError` extends the standard `toString` method of the `Error` class to include the error code, if it can be found in the list of module errors.
 This can be useful for log messages, however the HTTP status code and metadata (including chained errors) are not included.
