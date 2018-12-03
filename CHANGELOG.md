@@ -1,3 +1,18 @@
+## 2.0.0 (2018-12-03)
+
+### Features
+
+
+#### Refactoring ([a39ea8b](https://github.com/sealsystems/node-error/commit/a39ea8b))
+
+
+
+### BREAKING CHANGES
+
+#### The interface has been changed
+
+---
+
 ## 1.1.1 (2018-09-09)
 
 ### Bug Fixes
