@@ -9,22 +9,23 @@
   },
   "license": "MIT",
   "scripts": {
-    "bot": "bot",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "release": "semantic-release --branch ${CIRCLE_BRANCH}",
-    "test": "npm run bot test-units",
-    "coverage": "nyc --reporter=text --reporter=lcov mocha",
-    "report": "npm run coverage && if [[ $OSTYPE == darwin* ]]; then open=open; else open=xdg-open; fi && $open coverage/lcov-report/index.html"
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "report": "npm run coverage && if [[ $OSTYPE == darwin* ]]; then open=open; else open=xdg-open; fi && $open coverage/lcov-report/index.html",
+    "update": "updates -u && npm install && npm audit fix && npm test"
   },
   "main": "lib/SealError.js",
   "dependencies": {
     "v8-callsites": "1.2.1"
   },
   "devDependencies": {
-    "@sealsystems/eslint-config-es": "1.1.1",
-    "assertthat": "1.0.0",
-    "nyc": "12.0.2",
-    "roboter": "0.16.0",
-    "roboter-server": "0.16.0"
+    "@sealsystems/eslint-config-es": "2.0.2",
+    "eslint": "5.9.0",
+    "jest": "23.6.0",
+    "updates": "5.4.2"
   },
   "repository": {
     "type": "git",
