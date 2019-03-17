@@ -29,24 +29,17 @@ jobs:
           command: |
             if [ ! -d ./node_modules ]; then
               npm install
-              npm install --no-save @sealsystems/semantic-release-config semantic-release
             fi
       - save_cache: &save-cache
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
-          name: Run linter
-          command: npm run lint
-      - run:
           name: Run tests
-          command: npm run test
+          command: npm run bot
       - run:
           name: Run code coverage
           command: npm run coverage
-      - run:
-          name: Check for outdated dependencies
-          command: npm outdated || true
       - store_artifacts:
           path: coverage/lcov-report
           destination: coverage
