@@ -1,3 +1,14 @@
+## 2.0.3 (2019-03-17)
+
+### Chores
+
+
+#### Update scripts in package.json ([e140e43](https://github.com/sealsystems/node-error/commit/e140e43))
+
+
+
+---
+
 ## 2.0.2 (2019-03-17)
 
 ### Chores
