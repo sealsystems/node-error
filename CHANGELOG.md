@@ -1,3 +1,14 @@
+## 2.0.2 (2019-03-17)
+
+### Chores
+
+
+#### Switch to Jest ([eb83e1c](https://github.com/sealsystems/node-error/commit/eb83e1c))
+
+
+
+---
+
 ## 2.0.1 (2018-12-04)
 
 
