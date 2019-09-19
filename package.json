@@ -27,7 +27,7 @@
     "@sealsystems/eslint-config-es": "3.5.3",
     "@sealsystems/semantic-release": "4.0.12",
     "@sealsystems/test-config-jest": "1.0.5",
-    "updates": "7.2.1"
+    "updates": "9.0.0"
   },
   "repository": {
     "type": "git",
