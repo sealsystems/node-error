@@ -1,3 +1,22 @@
+## 2.1.0 (2019-09-25)
+
+### Features
+
+
+#### PLS-431 ([c966e09](https://github.com/sealsystems/node-error/commit/c966e09))
+
+- Removed roboter
+ - Installed latest dev stack
+ - Updated scripts
+ - Updated CircleCI config
+ - Updated dependencies
+ - Added dependabot config
+ - Added `package-lock.json` to git
+ - Fixed linting
+
+
+---
+
 ## 2.0.3 (2019-03-17)
 
 ### Chores
