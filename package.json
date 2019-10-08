@@ -12,12 +12,13 @@
     "bot": "bot",
     "lint": "lint",
     "lint:fix": "lint-fix",
-    "release": "semantic-release --branch ${CIRCLE_BRANCH}",
+    "release": "release",
     "test": "test-run",
     "test:coverage": "test-coverage",
     "test:coverage:check": "test-coverage-check",
     "test:report": "test-report",
-    "update": "updates -u && npm install && npm audit fix && npm test"
+    "update": "updates -u && npm install && npm audit fix && npm test",
+    "licenses": "license-checker --production --csv"
   },
   "main": "lib/SealError.js",
   "dependencies": {
