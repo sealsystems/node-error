@@ -1,3 +1,22 @@
+## 2.2.0 (2019-10-08)
+
+### Features
+
+
+#### PLS-431 ([07f93a7](https://github.com/sealsystems/node-error/commit/07f93a7))
+
+- Removed roboter
+ - Updated dependencies
+ - Updated scripts
+ - Updated CircleCI config
+ - Added dependabot config
+ - Added `package-lock.json` to git
+ - Fixed linting
+ - Used `seal-node:oss-module-update`
+
+
+---
+
 ## 2.1.0 (2019-09-25)
 
 ### Features
