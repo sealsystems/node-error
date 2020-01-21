@@ -1,3 +1,19 @@
+## 2.3.0 (2020-01-21)
+
+### Chores
+
+
+#### Updated node version to 12.x ([3bf014a](https://github.com/sealsystems/node-error/commit/3bf014a))
+
+### Features
+
+
+#### Merge data from errors.js into metadata ([a348f99](https://github.com/sealsystems/node-error/commit/a348f99))
+
+
+
+---
+
 ## 2.2.0 (2019-10-08)
 
 ### Features
