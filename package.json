@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@sealsystems/eslint-config-es": "3.6.0",
-    "@sealsystems/semantic-release": "4.0.18",
+    "@sealsystems/semantic-release": "4.0.20",
     "@sealsystems/test-config-jest": "1.0.5",
     "updates": "9.3.3"
   },
