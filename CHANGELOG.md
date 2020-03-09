@@ -1,3 +1,14 @@
+## 2.3.1 (2020-03-09)
+
+### Chores
+
+
+#### YOED :tada: ([c0791b8](https://github.com/sealsystems/node-error/commit/c0791b8))
+
+
+
+---
+
 ## 2.3.0 (2020-01-21)
 
 ### Chores
