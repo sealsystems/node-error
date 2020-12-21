@@ -1,3 +1,10 @@
+## 2.3.2 (2020-12-21)
+
+### Chores
+
+
+Trigger release ([5e34dd2](https://github.com/sealsystems/node-error/commit/5e34dd2))
+
 ## 2.3.1 (2020-03-09)
 
 ### Chores
