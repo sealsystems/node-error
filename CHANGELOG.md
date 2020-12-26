@@ -1,3 +1,12 @@
+## 2.3.3 (2020-12-26)
+
+### Chores
+
+
+Update build configuration ([e8670f4](https://github.com/sealsystems/node-error/commit/e8670f4))
+
+Update build configuration ([ceb2ee2](https://github.com/sealsystems/node-error/commit/ceb2ee2))
+
 ## 2.3.2 (2020-12-21)
 
 ### Chores
