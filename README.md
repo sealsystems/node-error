@@ -151,8 +151,63 @@ Result: new plain javascript object of this structure:
 }
 ```
 
+#### toRESTError
+
+The member function `toRESTError` returns a plain data object of the calling `@sealsystems/error` object matching the definition of a REST error response body.
+It contains `code`, `message` and `metadata` properties.
+
+```javascript
+const myError = new SealError(…);
+const myChildError = new SealError(…);
+myError.chain(myChildError);
+myError.toRESTError();
+```
+
+Result: new plain javascript object of this structure:
+
+```javascript
+{
+  code: myError.httpStatusCode,
+  message: myError.message,
+  metadata: {
+    kbCode: '<module name>/myError.code'
+    cause: {
+      name: 'SealError',
+      code: myChildError.code,
+      message: myChildError.message,
+      httpStatusCode: myChildError.httpStatusCode,
+      …
+    }
+    …
+  }
+}
+```
+
+#### toRESTError (static)
+
+The static function `toRESTError` takes an arbitrary object of type `Error` and returns a new plain data object matching the definition of a REST error response body.
+It contains `code`, `message` and `metadata` properties.
+
+```javascript
+const plainNewObject = SealError.toRESTError(error);
+```
+
+Parameter:
+```
+error      object   mandatory   error object
+```
+
+Result: new plain javascript object of this structure:
+
+```javascript
+{
+  code: error.httpStatusCode,
+  message: error.message,
+  metadata: error.metadata
+}
+```
+
 ### Get string representation
 
 `SealError` extends the standard `toString` method of the `Error` class to include the error code, if it can be found in the list of module errors.
 This can be useful for log messages, however the HTTP status code and metadata (including chained errors) are not included.
-

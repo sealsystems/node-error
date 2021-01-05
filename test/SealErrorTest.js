@@ -164,6 +164,45 @@ suite('SealError', () => {
     });
   });
 
+  suite('toRESTError', () => {
+    test('serializes SealErrors', async () => {
+      const err = new SealError('ERR_TEST');
+      delete err.stack;
+      delete err.pkgKey;
+
+      assert.that(err.toRESTError()).is.equalTo({
+        code: 418,
+        message: 'Im a Teapot',
+        metadata: {
+          kbCode: '@sealsystems/error/TEST'
+        }
+      });
+    });
+
+    test('serializes chained SealErrors', async () => {
+      const err1 = new SealError('Chained error');
+      delete err1.stack;
+      delete err1.pkgKey;
+      const err2 = new SealError('ERR_TEST').chain(err1);
+      delete err2.stack;
+      delete err2.pkgKey;
+
+      assert.that(err2.toRESTError()).is.equalTo({
+        code: 418,
+        message: 'Im a Teapot',
+        metadata: {
+          kbCode: '@sealsystems/error/TEST',
+          cause: {
+            name: 'SealError',
+            message: 'Chained error',
+            httpStatusCode: 500,
+            metadata: {}
+          }
+        }
+      });
+    });
+  });
+
   suite('#addModuleErrors', () => {
     test('throws error if parameters are not objects', async () => {
       assert
