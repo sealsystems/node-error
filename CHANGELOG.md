@@ -1,3 +1,10 @@
+## 2.3.4 (2021-01-05)
+
+### Chores
+
+
+Added functions creating REST response ([5b9d139](https://github.com/sealsystems/node-error/commit/5b9d139))
+
 ## 2.3.3 (2020-12-26)
 
 ### Chores
