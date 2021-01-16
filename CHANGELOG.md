@@ -1,3 +1,10 @@
+## 2.3.5 (2021-01-16)
+
+### Chores
+
+
+Update build config ([485806b](https://github.com/sealsystems/node-error/commit/485806b))
+
 ## 2.3.4 (2021-01-05)
 
 ### Chores
