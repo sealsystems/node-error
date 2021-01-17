@@ -1,3 +1,10 @@
+## 2.3.6 (2021-01-17)
+
+### Chores
+
+
+bump node-fetch from 2.6.0 to 2.6.1 ([7450ca3](https://github.com/sealsystems/node-error/commit/7450ca3))
+
 ## 2.3.5 (2021-01-16)
 
 ### Chores
