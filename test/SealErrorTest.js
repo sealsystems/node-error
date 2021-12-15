@@ -162,6 +162,28 @@ suite('SealError', () => {
         }
       });
     });
+
+    test('serializes only SealError specific properties', async () => {
+      const err1 = new SealError('ERR_TEST3', 123, { bu: 'hu' });
+      const err2 = new SealError('ERR_TEST').chain(err1);
+      // create recursive dependencies
+      err1.metadata.next = err2;
+      err2.metadata.next = err1;
+      // check data for recursive dependencies
+      assert
+        .that(() => {
+          JSON.stringify(err2);
+        })
+        .is.throwing('Maximum call stack size exceeded');
+
+      const res = err2.toJSON();
+
+      assert.that(res.metadata.cause.httpStatusCode).is.equalTo(123);
+      assert.that(res.metadata.cause.code).is.equalTo('ERR_TEST3');
+      assert.that(res.metadata.cause.message).is.equalTo('Chained error message');
+      assert.that(res.metadata.cause.stack).is.ofType('string');
+      assert.that(res.metadata.cause.metadata.bu).is.equalTo('hu');
+    });
   });
 
   suite('toRESTError', () => {
