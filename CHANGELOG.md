@@ -1,3 +1,12 @@
+## 2.3.7 (2021-12-16)
+
+### Bug Fixes
+
+
+Copy only SealError specific properties in toJSON ([d0ca341](https://github.com/sealsystems/node-error/commit/d0ca341))
+
+Ein erster Vorschlag um das Problem der rekursiven Abhängigkeiten in HTTP/Socket Fehlerobjekten zu lösen.
+
 ## 2.3.6 (2021-01-17)
 
 ### Chores
