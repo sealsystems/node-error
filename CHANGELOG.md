@@ -1,3 +1,10 @@
+## 2.3.8 (2021-12-23)
+
+### Bug Fixes
+
+
+error property 'recoverable' ([896f166](https://github.com/sealsystems/node-error/commit/896f166))
+
 ## 2.3.7 (2021-12-16)
 
 ### Bug Fixes
