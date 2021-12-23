@@ -165,6 +165,7 @@ suite('SealError', () => {
 
     test('serializes only SealError specific properties', async () => {
       const err1 = new SealError('ERR_TEST3', 123, { bu: 'hu' });
+      err1.recoverable = true;
       const err2 = new SealError('ERR_TEST').chain(err1);
       // create recursive dependencies
       err1.metadata.next = err2;
@@ -182,6 +183,7 @@ suite('SealError', () => {
       assert.that(res.metadata.cause.code).is.equalTo('ERR_TEST3');
       assert.that(res.metadata.cause.message).is.equalTo('Chained error message');
       assert.that(res.metadata.cause.stack).is.ofType('string');
+      assert.that(res.metadata.cause.recoverable).is.true();
       assert.that(res.metadata.cause.metadata.bu).is.equalTo('hu');
     });
   });
