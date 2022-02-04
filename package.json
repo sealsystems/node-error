@@ -24,9 +24,8 @@
     "v8-callsites": "1.2.1"
   },
   "devDependencies": {
-    "@sealsystems/eslint-config-es": "3.6.7",
-    "@sealsystems/mocha": "4.1.10",
-    "@sealsystems/semantic-release": "4.3.4"
+    "@sealsystems/eslint-config-es": "3.7.1",
+    "@sealsystems/mocha": "4.2.0"
   },
   "repository": {
     "type": "git",
@@ -36,7 +35,6 @@
     "extends": "@sealsystems/semantic-release/node-module"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }
