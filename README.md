@@ -1,7 +1,5 @@
 # @sealsystems/error
 
-[![CircleCI](https://circleci.com/gh/sealsystems/node-error.svg?style=svg)](https://circleci.com/gh/sealsystems/node-error)
-[![Build status](https://ci.appveyor.com/api/projects/status/2dcq5ge4qnivl2dc?svg=true)](https://ci.appveyor.com/project/Plossys/node-error)
 
 Easy handling of error codes and metadata.
 
