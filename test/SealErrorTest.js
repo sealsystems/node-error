@@ -79,7 +79,8 @@ suite('SealError', () => {
     assert.that(err.httpStatusCode).is.equalTo(418);
     assert.that(err.metadata).is.equalTo({
       kbCode: '@sealsystems/error/TEST',
-      user: 'hansi'
+      user: 'hansi',
+      sealSpaceUrl: 'https://sealspace.sealsystems.de/display/@sealsystems/error/TEST'
     });
   });
 
@@ -94,7 +95,8 @@ suite('SealError', () => {
     assert.that(err.metadata).is.equalTo({
       kbCode: '@sealsystems/error/TEST2',
       user: 'hugo',
-      exitCode: 42
+      exitCode: 42,
+      sealSpaceUrl: 'https://sealspace.sealsystems.de/display/@sealsystems/error/TEST2'
     });
   });
 
@@ -133,7 +135,8 @@ suite('SealError', () => {
         message: 'Im a Teapot',
         httpStatusCode: 418,
         metadata: {
-          kbCode: '@sealsystems/error/TEST'
+          kbCode: '@sealsystems/error/TEST',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/@sealsystems/error/TEST'
         }
       });
     });
@@ -153,6 +156,7 @@ suite('SealError', () => {
         httpStatusCode: 418,
         metadata: {
           kbCode: '@sealsystems/error/TEST',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/@sealsystems/error/TEST',
           cause: {
             name: 'SealError',
             message: 'Chained error',
@@ -198,7 +202,8 @@ suite('SealError', () => {
         code: 418,
         message: 'Im a Teapot',
         metadata: {
-          kbCode: '@sealsystems/error/TEST'
+          kbCode: '@sealsystems/error/TEST',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/@sealsystems/error/TEST'
         }
       });
     });
@@ -216,6 +221,7 @@ suite('SealError', () => {
         message: 'Im a Teapot',
         metadata: {
           kbCode: '@sealsystems/error/TEST',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/@sealsystems/error/TEST',
           cause: {
             name: 'SealError',
             message: 'Chained error',
