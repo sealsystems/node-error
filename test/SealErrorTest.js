@@ -78,8 +78,9 @@ suite('SealError', () => {
     assert.that(err.message).is.equalTo('Im a Teapot');
     assert.that(err.httpStatusCode).is.equalTo(418);
     assert.that(err.metadata).is.equalTo({
-      kbCode: '@sealsystems/error/TEST',
-      user: 'hansi'
+      kbCode: 'error-TEST',
+      user: 'hansi',
+      sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST'
     });
   });
 
@@ -92,9 +93,10 @@ suite('SealError', () => {
     assert.that(err.message).is.equalTo('Im a Coffeepot');
     assert.that(err.httpStatusCode).is.equalTo(500);
     assert.that(err.metadata).is.equalTo({
-      kbCode: '@sealsystems/error/TEST2',
+      kbCode: 'error-TEST2',
       user: 'hugo',
-      exitCode: 42
+      exitCode: 42,
+      sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST2'
     });
   });
 
@@ -133,7 +135,8 @@ suite('SealError', () => {
         message: 'Im a Teapot',
         httpStatusCode: 418,
         metadata: {
-          kbCode: '@sealsystems/error/TEST'
+          kbCode: 'error-TEST',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST'
         }
       });
     });
@@ -152,7 +155,8 @@ suite('SealError', () => {
         message: 'Im a Teapot',
         httpStatusCode: 418,
         metadata: {
-          kbCode: '@sealsystems/error/TEST',
+          kbCode: 'error-TEST',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST',
           cause: {
             name: 'SealError',
             message: 'Chained error',
@@ -198,7 +202,8 @@ suite('SealError', () => {
         code: 418,
         message: 'Im a Teapot',
         metadata: {
-          kbCode: '@sealsystems/error/TEST'
+          kbCode: 'error-TEST',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST'
         }
       });
     });
@@ -215,7 +220,8 @@ suite('SealError', () => {
         code: 418,
         message: 'Im a Teapot',
         metadata: {
-          kbCode: '@sealsystems/error/TEST',
+          kbCode: 'error-TEST',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST',
           cause: {
             name: 'SealError',
             message: 'Chained error',
