@@ -1,3 +1,10 @@
+## 2.3.9 (2022-04-05)
+
+### Chores
+
+
+Trigger release ([e54b58e](https://github.com/sealsystems/node-error/commit/e54b58e))
+
 ## 2.3.8 (2021-12-23)
 
 ### Bug Fixes
