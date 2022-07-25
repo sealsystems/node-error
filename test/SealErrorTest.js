@@ -78,9 +78,9 @@ suite('SealError', () => {
     assert.that(err.message).is.equalTo('Im a Teapot');
     assert.that(err.httpStatusCode).is.equalTo(418);
     assert.that(err.metadata).is.equalTo({
-      kbCode: 'error-TEST',
+      kbCode: 'TEST-error',
       user: 'hansi',
-      sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST'
+      sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/TEST-error'
     });
   });
 
@@ -93,10 +93,10 @@ suite('SealError', () => {
     assert.that(err.message).is.equalTo('Im a Coffeepot');
     assert.that(err.httpStatusCode).is.equalTo(500);
     assert.that(err.metadata).is.equalTo({
-      kbCode: 'error-TEST2',
+      kbCode: 'TEST2-error',
       user: 'hugo',
       exitCode: 42,
-      sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST2'
+      sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/TEST2-error'
     });
   });
 
@@ -135,8 +135,8 @@ suite('SealError', () => {
         message: 'Im a Teapot',
         httpStatusCode: 418,
         metadata: {
-          kbCode: 'error-TEST',
-          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST'
+          kbCode: 'TEST-error',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/TEST-error'
         }
       });
     });
@@ -155,8 +155,8 @@ suite('SealError', () => {
         message: 'Im a Teapot',
         httpStatusCode: 418,
         metadata: {
-          kbCode: 'error-TEST',
-          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST',
+          kbCode: 'TEST-error',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/TEST-error',
           cause: {
             name: 'SealError',
             message: 'Chained error',
@@ -202,8 +202,8 @@ suite('SealError', () => {
         code: 418,
         message: 'Im a Teapot',
         metadata: {
-          kbCode: 'error-TEST',
-          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST'
+          kbCode: 'TEST-error',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/TEST-error'
         }
       });
     });
@@ -220,8 +220,8 @@ suite('SealError', () => {
         code: 418,
         message: 'Im a Teapot',
         metadata: {
-          kbCode: 'error-TEST',
-          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/error-TEST',
+          kbCode: 'TEST-error',
+          sealSpaceUrl: 'https://sealspace.sealsystems.de/display/KB/TEST-error',
           cause: {
             name: 'SealError',
             message: 'Chained error',
