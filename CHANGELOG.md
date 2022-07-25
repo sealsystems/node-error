@@ -1,3 +1,10 @@
+## 2.4.0 (2022-07-25)
+
+### Features
+
+
+changed structure of sealSpaceUrl ([fdcf77c](https://github.com/sealsystems/node-error/commit/fdcf77c))
+
 ## 2.3.9 (2022-04-05)
 
 ### Chores

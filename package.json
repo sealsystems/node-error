@@ -1,6 +1,6 @@
 {
   "name": "@sealsystems/error",
-  "version": "2.3.9",
+  "version": "2.4.0",
   "description": "Easy handling of error codes and metadata.",
   "author": {
     "name": "SEAL Systems AG",
